@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Github\\ConsoleApp1\\",
+  "WorkspaceRootPath": "D:\\Github\\ConsoleCSV_Consolidation_2025\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1B2A64DB-D53E-4D36-A9BE-6A623C647D82}|ConsoleApp1.csproj|d:\\github\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1B2A64DB-D53E-4D36-A9BE-6A623C647D82}|ConsoleApp1.csproj|d:\\github\\consolecsv_consolidation_2025\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1B2A64DB-D53E-4D36-A9BE-6A623C647D82}|ConsoleApp1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -64,11 +64,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Github\\ConsoleApp1\\Program.cs",
+              "DocumentMoniker": "D:\\Github\\ConsoleCSV_Consolidation_2025\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Github\\ConsoleApp1\\Program.cs",
+              "ToolTip": "D:\\Github\\ConsoleCSV_Consolidation_2025\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAwwDYAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAwwC4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-27T11:52:34.633Z",
               "EditorCaption": ""
