@@ -22,7 +22,7 @@ public class Program
         public string Number { get; set; }
         public string EquipmentCode { get; set; }
         public decimal TotalQuantity { get; set; }
-        public string Weight { get; set; }
+        public string Weight { get; set; } // Изменено на string, так как не суммируем
     }
 
     public static void Main()
@@ -99,10 +99,10 @@ public class Program
         var groupedRows = allRows.GroupBy(r => r.EquipmentCode)
                                .Select(g => new GroupedRow
                                {
-                                   Number = g.First().Number, // Добавляем столбец Number
+                                   Number = g.First().Number,
                                    EquipmentCode = g.Key,
                                    TotalQuantity = g.Sum(x => decimal.Parse(x.Quantity)),
-                                   Weight = g.First().Weight
+                                   Weight = g.First().Weight // Берем значение Weight из первой строки
                                });
 
         // Запись сгруппированных данных в файл с заменой разделителя на запятую
@@ -119,11 +119,48 @@ public class Program
                 csv.WriteField(row.Number);
                 csv.WriteField(row.EquipmentCode);
                 csv.WriteField(row.TotalQuantity.ToString("0.00", new System.Globalization.CultureInfo("ru-RU")));
-                csv.WriteField(row.Weight);
+                csv.WriteField(row.Weight); // Записываем Weight как есть
                 csv.NextRecord();
             }
         }
 
         Console.WriteLine($"Сгруппированные данные сохранены в {groupedOutputFilePath}");
+
+        // Запись объединенных данных с названиями файлов в один файл
+        string combinedWithFileNamesOutputFilePath = folderPath + @"\combined_with_file_names.csv";
+
+        using (var writer = new StreamWriter(combinedWithFileNamesOutputFilePath, false, Encoding.GetEncoding("Windows-1251")))
+        using (var csv = new CsvWriter(writer, new CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture)
+        {
+            Delimiter = ";"
+        }))
+        {
+            foreach (var file in files)
+            {
+                csv.WriteField("Файл: " + Path.GetFileName(file));
+                csv.NextRecord();
+
+                using (var reader = new StreamReader(file, Encoding.GetEncoding("Windows-1251")))
+                using (var csvReader = new CsvReader(reader, new CsvConfiguration(System.Globalization.CultureInfo.InvariantCulture)
+                {
+                    Delimiter = ";",
+                    HasHeaderRecord = false
+                }))
+                {
+                    var records = csvReader.GetRecords<Row>();
+                    foreach (var record in records)
+                    {
+                        csv.WriteField(record.Number);
+                        csv.WriteField(record.EquipmentCode);
+                        csv.WriteField(record.Name);
+                        csv.WriteField(record.Quantity);
+                        csv.WriteField(record.Weight);
+                        csv.NextRecord();
+                    }
+                }
+            }
+        }
+
+        Console.WriteLine($"Объединенные данные с названиями файлов сохранены в {combinedWithFileNamesOutputFilePath}");
     }
 }
